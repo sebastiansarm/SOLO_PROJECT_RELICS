@@ -12,6 +12,10 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 app.use(express.json());
 
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+
 app.post('/api/relics', async (req, res) => {
     const newRelic = new Relic(req.body);
     await newRelic.save();
